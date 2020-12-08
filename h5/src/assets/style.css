@@ -1,0 +1,114 @@
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+li{list-style: none}
+i{    font-style: normal;}
+.bgfff{bg:#fff;}
+.clear{zoom:1;}
+.clear:after {
+    content: "";
+    display: block;
+    clear: both;}
+a{td:none}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+header,
+nav,
+section,
+article,
+aside,
+footer,
+figure,
+figcaption,
+menu,
+button {
+    margin: 0;
+    padding: 0;
+}
+html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: HelveticaLig;
+    w:100vw;bg:rgb(246, 246, 246);color: #383838;
+}
+* {
+    box-sizing: inherit;
+}
+img{content: normal!important;vertical-align: bottom;}
+[aspectratio]{
+    position: relative;
+}
+[aspectratio]::before{
+    content:'';display: block;width: 1px;margin-left: -1px;height: 0;
+}
+[aspectratio-content]{
+    position: absolute;top:0;left: 0;
+    right: 0;bottom: 0;width: 100%;height: 100%;
+}
+[auto]{margin: 0 auto;}
+[w-1]{width: 100vw;}
+[flex]{display: flex;}
+[align-items]{align-items: center;}
+[flex-direction]{flex-direction: column;}
+[fz-24]{font-size: 24px;}
+[fz-28]{font-size: 28px;}
+[fz-30]{font-size: 30px;}
+[fz-36]{font-size: 36px;}
+[fz-18]{font-size: 18px;}
+[fz-15]{font-size: 15px;}
+[fz-50]{font-size: 50px;}
+[c-38]{color: #383838;}
+[c-ye],.active{color: #f9b705;}
+h4,[title]{font-family: HelveticaBold;color: #383838;font-weight: bold;}
+p,pre{
+    font-family: HelveticaLig; word-break: break-word;
+    white-space: pre-wrap;
+}
+[center]{text-align: center;}
+[w-674]{width: 674px;}
+[h-1]{height: 100%;}
+[w-100]{width: 100%;}
+.ins-cont,.caress-view dl,[w-89]{width:89vw;}
+.ins-cont h4{padding: 60px 0 10px 0;}
+.ins-cont p{line-height: 45px;}
+.ins-cont dd img{width: 100%;height: 316px;}
+.ins-cont b{    display: block;
+    text-align: right;margin-bottom: 20px;}
+.top{
+    position: fixed;
+    top: 0;
+    background: #fff;
+}
