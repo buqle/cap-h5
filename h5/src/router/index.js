@@ -13,6 +13,7 @@ const routes = [
     path: '/',
     name: 'Home',
     redirect:'/',
+    meta:{keepalive:true},
     component: _import_('LayOut'),
     children:[
       {
@@ -35,10 +36,12 @@ const routes = [
     path: '/featured-insights',
     redirect:'FeaturedIns',
     component: _import_('LayOut'),
+    meta:{keepalive:true},
     children:[
       {
         path: '/',
         name:'FeaturedIns',
+        meta:{keepalive:true},
         component: _import_('FeaturedIns'),
       },
     ]

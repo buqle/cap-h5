@@ -3,7 +3,7 @@
     <img src="@/assets/ins.jpg" w-1>
     <div class="ins-cont" fz-24 c-38 auto>
       <h4>
-        How to Deal with Presidential Transition
+        {{$route.params.tit}}
       </h4>
       <p>
         The transition to a new presidential term is a massive undertaking. Effective governance on a national scale depends on a smooth White House transition process and, just as important, on federal agencies’ ability to adapt and react to the demands of a new term. The Biden administration—need a playbook for how to navigate this critical period, particularly amid the turbulence brought by the coronavirus pandemic.
@@ -18,7 +18,12 @@
 
 <script>
 export default {
-  name: "FeaturedIns"
+  name: "FeaturedIns",
+  watch:{
+    '$route.params.tit'(){
+
+    }
+  }
 }
 </script>
 

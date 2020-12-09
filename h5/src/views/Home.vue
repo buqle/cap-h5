@@ -1,24 +1,37 @@
 <template>
   <div class="home">
-    <img src="@/assets/img2.jpg" w-1>
-    <dl flex auto fz-15 c-38 class="list" >
+    <div  v-show="show2" style="height:16vh;justify-content: center" flex align-items >
+      <van-loading  size="10vh">加载中...</van-loading>
+    </div>
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="#f9b705" v-show="!show2">
+      <van-swipe-item v-for="(item,index) in banner" :key="index">
+        <img v-lazy="item" w-1/>
+      </van-swipe-item>
+    </van-swipe>
+    <div w-1 class="ske" v-show="show">
+      <van-skeleton title :row="3" v-for="(item,index ) in 3" :key="index"/>
+    </div>
+    <dl flex auto fz-15 c-38 class="list" v-for="[label, value] in newsList" :key="label"  v-show="!show">
       <dt flex flex-direction>
         <h4>
-          How to Deal with Presidential Transition?
+          {{value.title}}
         </h4>
+
         <p>
-          As the new administration prepares to take office, what should investors be prepared for the coming uncertain time?
+          {{value.brief}}
         </p>
-        <span flex>
+
+
+        <span flex @click="goList(value.title)">
           <b title fz-18>Read More</b>
         </span>
       </dt>
       <dd>
-        <img src="../assets/img3.jpg" alt="">
+        <img  alt="" v-lazy="value.img">
       </dd>
     </dl>
 
-    <img src="@/assets/img4.jpg" alt="" w-1>
+    <img  alt="" w-1  v-lazy="img4">
 
     <div class="we-do" w-674 auto>
       <h4 c-ye center>What We Do</h4>
@@ -43,11 +56,67 @@
 </template>
 
 <script>
-
+import img4 from "@/assets/img4.jpg";
 export default {
   name: 'Home',
   components: {
 
+  },
+  data(){
+    return{
+      newsList:[],
+      mapkey:[10,20,30],
+      banner:[],
+      img4,
+      show:true,
+      show2:true
+    }
+  },
+  created(){
+
+  this.bannerGet()
+   this.newsst()
+  },
+  methods:{
+    async bannerGet(){
+      const data=await this.$api.list.getBanner()
+      if(data.code==0){
+        this.banner=data.data
+        this.show2=false
+      }else {
+        this.$toast.fail('加载失败');
+      }
+    },
+
+    async newsst(){
+      const news=await this.$api.list.getNews()
+      if(news.code==0){
+        const result = new Map()
+        let i=0;
+        for(const key in news.data){
+          result.set(this.mapkey[i],news.data[key])
+          i++
+        }
+        this.newsList=result
+        this.show=false
+      }else {
+        this.$toast.fail('加载失败');
+      }
+    },
+    goList(tit){
+      tit = tit
+          .replace(/=/g, "%3D")
+          .replace(/\+/g, "=")
+          .replace(/[\s]/g, "-")
+          .replace(/\?/g, "")
+          .replace(/#/g, "?")
+          .replace(/&/g, "&");
+      this. $router.push({name:'featuredList',params:{
+
+          tit
+
+        }})
+    }
   }
 }
 </script>
@@ -58,14 +127,14 @@ export default {
 
   line-height: 48px;font-size: 24px;
 }
-.list{width: 674px;font-family: HelveticaLig;-moz-box-shadow:0px 5px 10px #acb3b5; -webkit-box-shadow:0px 5px 10px #acb3b5; box-shadow:0px 5px 10px #acb3b5;margin: 50px auto;}
+.list{width: 674px;-moz-box-shadow:0px 5px 10px #acb3b5; -webkit-box-shadow:0px 5px 10px #acb3b5; box-shadow:0px 5px 10px #acb3b5;margin: 50px auto;}
 .list img{
   width: 262px;height:250px
 }
 .list dt{flex: 1 1 0;margin-right: 16px;margin-left: 20px;}
 .list dt h4{word-wrap: break-word;
   white-space: normal;
-  word-break: break-all;height: 22px;overflow: hidden;line-height: 22px;font-family: HelveticaBold;
+  word-break: break-all;height: 22px;overflow: hidden;line-height: 22px;
   margin: 30px 0 20px 0;
 }
 .list dt p{line-height: 30px;word-wrap: break-word;

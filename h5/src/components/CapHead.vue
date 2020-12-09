@@ -2,8 +2,8 @@
   <div w-1 class="top">
     <div class="top-bar" auto>
       <div class="head" flex align-items h-1>
-        <img src="../assets/logo.png" @click="$router.push({path:'/'})">
-        <p fz-30 @click="$router.push({path:'/'})">ACQUCAP</p>
+        <img src="../assets/logo.png" @click="back">
+        <p fz-30  @click="back">ACQUCAP</p>
         <span @click="show=!show">
           <van-icon :name="!show?'wap-nav':'cross'" size="6vw"/>
         </span>
@@ -70,6 +70,13 @@ name: "CapHead",
       ]
     };
   },
+  methods:{
+    back(){
+      this.show=false
+      this.$router.push({path:'/'})
+
+    }
+  }
 }
 </script>
 

@@ -61,7 +61,7 @@ body {
     margin: 0;
     padding: 0;
 
-    font-family: HelveticaLig;
+    font-family: "Helvetica Neue", "Microsoft Yahei", sans-serif;
     w:100vw;bg:rgb(246, 246, 246);color: #383838;
 }
 * {
@@ -92,9 +92,9 @@ img{content: normal!important;vertical-align: bottom;}
 [fz-50]{font-size: 50px;}
 [c-38]{color: #383838;}
 [c-ye],.active{color: #f9b705;}
-h4,[title]{font-family: HelveticaBold;color: #383838;font-weight: bold;}
+h4,[title]{color: #383838;font-weight: bold; }
 p,pre{
-    font-family: HelveticaLig; word-break: break-word;
+    word-break: break-word;font-family: "Helvetica Neue", "Microsoft Yahei", sans-serif;
     white-space: pre-wrap;
 }
 [center]{text-align: center;}
@@ -112,3 +112,8 @@ p,pre{
     top: 0;
     background: #fff;
 }
+.van-skeleton{margin: 6vw;}
+.van-skeleton__row{height: 4vw;margin: 6vw 0;}
+.van-swipe__indicators{}
+.van-swipe__indicator:not(:last-child){margin-right: 2vw;}
+.van-swipe__indicator{width: 2.4vw;height: 2.4vw;background: #ccc;}

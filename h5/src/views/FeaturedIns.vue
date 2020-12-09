@@ -1,14 +1,40 @@
 <template>
   <div class="ins">
-    <img src="@/assets/ins.jpg" w-1>
-    <dl c-38 fz-24 class="ins-cont" auto>
+    <div  v-show="show2" style="height:16vh;justify-content: center" flex align-items >
+      <van-loading  size="10vh">加载中...</van-loading>
+    </div>
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="#f9b705" v-show="!show2">
+      <van-swipe-item v-for="(item,index) in banner" :key="index">
+        <img v-lazy="item" w-1/>
+      </van-swipe-item>
+    </van-swipe>
+
+    <div w-1 class="ske" v-show="show">
+      <van-skeleton title :row="3" v-for="(item,index ) in 3" :key="index"/>
+    </div>
+
+    <dl c-38 fz-24 class="ins-cont" auto v-for="[label, value] in newsList" :key="label"  v-show="!show">
       <dt>
-       <h4 fz-28> How to Deal with Presidential Transition</h4>
-        <p fz-24>As the new administration prepares to take office, what should investors be prepared for the coming uncertain time?</p>
-        <b title fz-28>Read More</b>
+       <h4 fz-28>
+         <template v-if="value.title&&value.title.length>=40">
+           {{value.title|readMore(40,'...')}}
+         </template>
+         <template v-else>
+           {{value.title}}
+         </template>
+       </h4>
+        <p fz-24>
+          <template v-if="value.brief&&value.brief.length>=150">
+            {{value.brief|readMore(150,'...')}}
+          </template>
+          <template v-else>
+            {{value.brief}}
+          </template>
+        </p>
+        <b title fz-28 @click="goList(value.title)">Read More</b>
       </dt>
       <dd>
-        <img src="@/assets/img3.jpg" alt="">
+        <img  alt="" v-lazy="value.img">
       </dd>
       <van-divider :style="{borderColor: '#000',paddingTop: '3vh',margin:0}"></van-divider>
     </dl>
@@ -18,7 +44,62 @@
 
 <script>
 export default {
-name: "FeaturedIns"
+name: "FeaturedIns",
+  data(){
+    return{
+      newsList:[],
+      mapkey:[10,20,30],
+      banner:[],
+      show:true,
+      show2:true
+    }
+  },
+  created(){
+
+    this.bannerGet()
+    this.newsst()
+  },
+  methods:{
+    async bannerGet(){
+      const data=await this.$api.list.getBanner()
+      if(data.code==0){
+        this.banner=data.data
+        this.show2=false
+      }else {
+        this.$toast.fail('加载失败');
+      }
+    },
+
+    async newsst(){
+      const news=await this.$api.list.getNews()
+      if(news.code==0){
+        const result = new Map()
+        let i=0;
+        for(const key in news.data){
+          result.set(this.mapkey[i],news.data[key])
+          i++
+        }
+        this.newsList=result
+        this.show=false
+      }else {
+        this.$toast.fail('加载失败');
+      }
+    },
+    goList(tit){
+      tit = tit
+          .replace(/=/g, "%3D")
+          .replace(/\+/g, "=")
+          .replace(/[\s]/g, "-")
+          .replace(/\?/g, "")
+          .replace(/#/g, "?")
+          .replace(/&/g, "&");
+      this. $router.push({name:'featuredList',params:{
+
+          tit
+
+        }})
+    }
+  }
 }
 </script>
 
