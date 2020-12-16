@@ -30,6 +30,20 @@ const routes = [
         path: 'careers',
         component: _import_('CaressView'),
       },
+      {
+        path: 'overview',
+        component: _import_('AboutVerview'),
+      },
+      {
+        path: 'overview',
+        component: _import_('AboutVerview'),
+      },
+      {
+        path: 'contact',
+        component: _import_('AboutContact'),
+      }
+
+
     ]
   },
   {
@@ -60,19 +74,7 @@ const routes = [
       },
     ]
   },
-  {
-    path: '/overview',
-    component: _import_('LayOut'),
-    redirect:'about',
-    meta:{keepalive:true,titles:''},
-    children:[
-      {
-        path: '/:titles',
-        name:'about',
-        component: _import_('AboutVerview'),
-      },
-    ]
-  },
+
 ]
 
 const router = new VueRouter({

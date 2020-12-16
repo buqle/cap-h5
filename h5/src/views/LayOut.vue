@@ -4,15 +4,17 @@
     <transition  name="fade" mode="out-in" appear>
     <router-view class="view"/>
     </transition>
+    <cap-footer></cap-footer>
   </div>
 </template>
 
 <script>
 import CapHead from '@/components/CapHead'
+import CapFooter from '@/components/CapFooter'
 export default {
 name: "LayOut",
   components:{
-    CapHead,
+    CapHead,CapFooter
   },
 
   beforeCreate(){
@@ -41,5 +43,5 @@ name: "LayOut",
 .fade-leave-activ {
   transition: opacity 1s cubic-bezier(1, 0.9, 0.9, 1);
 }
-.view{margin-top: 8vh;}
+.view{margin-top: 8vh;padding-bottom: 14vh;}
 </style>

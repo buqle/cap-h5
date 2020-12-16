@@ -2,8 +2,7 @@
   <div w-1 class="top">
     <div class="top-bar" auto>
       <div class="head" flex align-items h-1>
-        <img src="../assets/logo.png" @click="back">
-        <p fz-30  @click="back">ACQUCAP</p>
+        <img v-lazy="logo" @click="back">
         <span @click="show=!show">
           <van-icon :name="!show?'wap-nav':'cross'" size="6vw"/>
         </span>
@@ -14,7 +13,7 @@
               tag="p"
               v-for="(item,index) in nav"
               :key="index"
-              :to="index!=3?item.path:{ name: 'about', params: { titles: 'overview' }}"
+              :to="item.path"
               :class="{active:$route.path==item.path}"
               cursor-p
           >
@@ -36,11 +35,13 @@
 </template>
 
 <script>
+import logo from '@/assets/logo.png'
 export default {
 name: "CapHead",
   data() {
     return {
       show:false,
+      logo,
       nav:[
         {
           title:'Featured Insights',
@@ -57,15 +58,6 @@ name: "CapHead",
         {
           title:'About',
           path: '/overview',
-          child:[
-            {
-              title:'Overview',
-              titles: 'overview'
-            },{
-              title:'Contact',
-              titles:'contact'
-            }
-          ]
         },
       ]
     };
@@ -95,7 +87,7 @@ z-index: 9999;
 .head span{    flex: 1 1 0;
   text-align: right;
   padding-right: 4vw;}
-.head img{width: 72px;}
+.head img{width: 286px;height: 70%;}
 .head p{font-family: cursive;
   font-size: 5vw;margin-left: 10px;}
 .fade-enter-active, .fade-leave-active { transition: opacity 0.5s; } .fade-enter, .fade-leave-to { opacity: 0; }

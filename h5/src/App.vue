@@ -8,6 +8,5 @@
 </template>
 
 <style>
-@import "./common/font/font.css";
 *{padding: 0;margin: 0;}
 </style>

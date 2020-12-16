@@ -1,13 +1,9 @@
 <template>
   <div class="ins">
     <div  v-show="show2" style="height:16vh;justify-content: center" flex align-items >
-      <van-loading  size="10vh">加载中...</van-loading>
+      <van-loading  size="12vw">加载中...</van-loading>
     </div>
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="#f9b705" v-show="!show2">
-      <van-swipe-item v-for="(item,index) in banner" :key="index">
-        <img v-lazy="item" w-1/>
-      </van-swipe-item>
-    </van-swipe>
+    <img v-lazy="feat" w-1/>
 
     <div w-1 class="ske" v-show="show">
       <van-skeleton title :row="3" v-for="(item,index ) in 3" :key="index"/>
@@ -43,6 +39,7 @@
 </template>
 
 <script>
+import feat from '@/assets/feat.jpg'
 export default {
 name: "FeaturedIns",
   data(){
@@ -51,7 +48,8 @@ name: "FeaturedIns",
       mapkey:[10,20,30],
       banner:[],
       show:true,
-      show2:true
+      show2:true,
+      feat
     }
   },
   created(){
@@ -104,5 +102,5 @@ name: "FeaturedIns",
 </script>
 
 <style scoped>
-
+.ins{padding-bottom: 16vh;}
 </style>

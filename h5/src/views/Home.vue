@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div  v-show="show2" style="height:16vh;justify-content: center" flex align-items >
-      <van-loading  size="10vh">加载中...</van-loading>
+      <van-loading  size="10vw">加载中...</van-loading>
     </div>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="#f9b705" v-show="!show2">
       <van-swipe-item v-for="(item,index) in banner" :key="index">
@@ -18,11 +18,16 @@
         </h4>
 
         <p>
-          {{value.brief}}
+          <template v-if="value.brief&&value.brief.length>=100">
+            {{value.brief|readMore(100,'...')}}
+          </template>
+          <template v-else>
+            {{value.brief}}
+          </template>
         </p>
 
 
-        <span flex @click="goList(value.title)">
+        <span flex @click="goList(value.title)" bdb>
           <b title fz-18>Read More</b>
         </span>
       </dt>
@@ -44,8 +49,8 @@
         <p>Come to ACQUACAP,</p>
         <p>truly be your personal best with</p>
         <p>our best team.</p>
-        <b title c-38>Apply</b><br>
-        <b title c-38>Discover ACQUACAP</b>
+        <b title c-38 bdb>Apply</b><br>
+        <b title c-38 bdb>Discover ACQUACAP</b>
       </dt>
       <dd>
         <img src="@/assets/img5.jpg" alt="" w-1>
@@ -121,29 +126,30 @@ export default {
 }
 </script>
 <style>
-.we-do{}
+.home{padding-bottom: 16vh!important;}
 .we-do h4{font-size: 48px;padding: 50px 0 10px 0;}
 .we-do pre{
 
   line-height: 48px;font-size: 24px;
 }
-.list{width: 674px;-moz-box-shadow:0px 5px 10px #acb3b5; -webkit-box-shadow:0px 5px 10px #acb3b5; box-shadow:0px 5px 10px #acb3b5;margin: 50px auto;}
+.list{width:88vw;-moz-box-shadow:0px 5px 10px #acb3b5; -webkit-box-shadow:0px 5px 10px #acb3b5; box-shadow:0px 5px 10px #acb3b5;margin: 50px auto;padding-bottom: 20px;height:250px}
 .list img{
   width: 262px;height:250px
 }
-.list dt{flex: 1 1 0;margin-right: 16px;margin-left: 20px;}
+.list dt{margin-right: 16px;margin-left: 20px;flex: 1 1 0;}
 .list dt h4{word-wrap: break-word;
   white-space: normal;
-  word-break: break-all;height: 22px;overflow: hidden;line-height: 22px;
-  margin: 30px 0 20px 0;
+  word-break: break-all;line-height: 26px;width: 96%;
+  margin-top: 34px;margin-bottom: 20px;
 }
-.list dt p{line-height: 30px;word-wrap: break-word;
-  white-space: normal;
-  word-break: break-all;}
-.list dt span{    flex: 1 1 0;
+.list dt p{line-height: 30px;display: -webkit-box;
+  -webkit-box-orient: vertical;
+  flex: 1 1 0}
+.list dt span{
   align-self: flex-end;
+;
   display: flex;
-  align-items: flex-end;padding-bottom: 20px;}
+  align-items: flex-end;}
 .list dd{flex: 0 0 250px;}
 
 
@@ -151,5 +157,5 @@ export default {
 .join-cap dt{position: absolute;left: 40px;bottom: 0;width: 464px;background: #fff;padding: 40px;}
 .join-cap dt h4{font-size: 32px;margin-bottom: 16px;}
 .join-cap dt p{line-height: 56px;}
-.join-cap dt b{font-size: 28px;}
+.join-cap dt b{font-size: 28px;margin:6px 0;display: inline-block;padding-bottom: 6px;}
 </style>

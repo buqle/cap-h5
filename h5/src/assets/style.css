@@ -112,8 +112,25 @@ p,pre{
     top: 0;
     background: #fff;
 }
-.van-skeleton{margin: 6vw;}
-.van-skeleton__row{height: 4vw;margin: 6vw 0;}
+.van-skeleton{margin: 3.4vw;}
+.van-skeleton__row{height: 4vw;margin:4vw 0;}
 .van-swipe__indicators{}
 .van-swipe__indicator:not(:last-child){margin-right: 2vw;}
 .van-swipe__indicator{width: 2.4vw;height: 2.4vw;background: #ccc;}
+@svg 1px-border {
+
+    @rect { fill: var(--color, black); width: 100%; height: 100%; }
+}
+
+@svg 1px-border2 {
+    width: 4px;
+    height: 4px;
+    @rect {
+        fill: transparent;
+        width: 100%;
+        height: 100%;
+        stroke-width: 25%;
+        stroke: var(--color, black);
+    }
+}
+[bdb]{border: 0;border-image: svg(1px-border2 param(--color #383838)) 1 stretch;border-bottom: 1px solid;padding-bottom: 4px;}

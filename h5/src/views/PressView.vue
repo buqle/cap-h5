@@ -39,7 +39,7 @@ name: "PressView",
 </script>
 
 <style scoped>
-.ins{padding-bottom: 90px;}
+.ins{padding-bottom: 16vh;}
 .ins-cont h4{padding: 80px 0 40px 0;}
 .ins-cont p{line-height: 46px;margin-bottom: 50px;}
 </style>
